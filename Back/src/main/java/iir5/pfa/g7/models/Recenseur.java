@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Recenseur extends Personne {
+public class Recenseur extends User {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Region region;

@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Gestionnaire extends Personne {
+public class Gestionnaire extends User {
 
 	@OneToMany(mappedBy = "gestionnaire", fetch = FetchType.EAGER)
 	@JsonIgnore

@@ -49,7 +49,7 @@ public class RecenseurController {
 
 	@GetMapping(value = "/{name}")
 	public Recenseur findByNom(@PathVariable final String nom) {
-		return RecenseurJpaRepository.findByNom(nom);
+		return RecenseurJpaRepository.findByName(nom);
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)

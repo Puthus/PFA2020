@@ -8,7 +8,7 @@ import iir5.pfa.g7.models.Recenseur;
 
 public interface RecenseurRepository extends JpaRepository<Recenseur, Integer> {
 
-	Recenseur findByNom(String nom);
+	Recenseur findByName(String nom);
 
 	Optional<Recenseur> findById(int id);
 

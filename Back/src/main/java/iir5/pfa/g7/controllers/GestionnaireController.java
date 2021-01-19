@@ -2,6 +2,7 @@ package iir5.pfa.g7.controllers;
 
 import java.util.HashMap;
 
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -49,7 +50,7 @@ public class GestionnaireController {
 
 	@GetMapping(value = "/{name}")
 	public Gestionnaire findByNom(@PathVariable final String nom) {
-		return gestionnaireJpaRepository.findByNom(nom);
+		return gestionnaireJpaRepository.findByName(nom);
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)

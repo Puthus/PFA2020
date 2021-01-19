@@ -1,1 +1,22 @@
-<app-map></app-map>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
+      <li *ngIf="authority === 'recenseur'" class="nav-item">
+        <a class="nav-link" routerLink="recenseur">Partie recenseur</a>
+      </li>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="admin">Partie Administrateur</a>
+      </li>
+      <li *ngIf="authority === 'gestionnaire'" class="nav-item">
+        <a class="nav-link" routerLink="gestionnaire">Partie Gestionnaire</a>
+      </li>
+      <li *ngIf="!authority" class="nav-item">
+        <a class="nav-link" routerLink="auth/login">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
