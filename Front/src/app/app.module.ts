@@ -14,6 +14,7 @@ import { GestionnaireComponent } from './gestionnaire/gestionnaire.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { MapComponent } from './map/map.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MapComponent } from './map/map.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

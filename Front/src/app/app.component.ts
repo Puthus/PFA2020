@@ -9,7 +9,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class AppComponent implements OnInit {
   private roles: string[];
-  private authority: string;
+  authority: string;
 
   constructor(private tokenStorage: TokenStorageService, private title: Title) {
     this.title.setTitle('Projet');
