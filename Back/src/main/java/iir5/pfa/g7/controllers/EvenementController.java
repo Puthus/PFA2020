@@ -20,7 +20,7 @@ import iir5.pfa.g7.models.Evenement;
 import iir5.pfa.g7.repository.EvenementRepository;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins={"http://localhost:4200","http://localhost:4201"})
 @RequestMapping("evenements")
 public class EvenementController {
 

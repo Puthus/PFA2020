@@ -20,7 +20,7 @@ import iir5.pfa.g7.models.Region;
 import iir5.pfa.g7.repository.RegionRepository;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins={"http://localhost:4200","http://localhost:4201"})
 @RequestMapping("regions")
 public class RegionController {
 

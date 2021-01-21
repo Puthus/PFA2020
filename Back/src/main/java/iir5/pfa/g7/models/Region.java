@@ -24,8 +24,6 @@ public class Region {
 	private String libelle;
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private AdminRegional adminRegional;
-
-	// TODO
 	@OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Monument> monuments;

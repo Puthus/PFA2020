@@ -20,7 +20,7 @@ import iir5.pfa.g7.models.Travail;
 import iir5.pfa.g7.repository.TravailRepository;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins={"http://localhost:4200","http://localhost:4201"})
 @RequestMapping("travaux")
 public class TravailController {
 

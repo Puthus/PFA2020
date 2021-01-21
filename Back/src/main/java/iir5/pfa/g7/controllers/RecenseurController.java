@@ -21,7 +21,7 @@ import iir5.pfa.g7.models.Recenseur;
 import iir5.pfa.g7.repository.RecenseurRepository;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins={"http://localhost:4200","http://localhost:4201"})
 @RequestMapping("Recenseurs")
 public class RecenseurController {
 

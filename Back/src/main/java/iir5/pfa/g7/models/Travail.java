@@ -19,7 +19,6 @@ public class Travail {
 
 	public Travail() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public long getId() {

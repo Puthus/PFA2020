@@ -17,7 +17,6 @@ public class AdminRegional extends User {
 	@JsonIgnore
 	private List<Region> regions;
 
-	// TODO
 	@OneToMany(mappedBy = "adminRegional", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Monument> monuments;

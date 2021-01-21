@@ -36,7 +36,7 @@ import iir5.pfa.g7.request.LoginForm;
 import iir5.pfa.g7.request.SignUpForm;
 import iir5.pfa.g7.security.jwt.JwtProvider;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins={"*"}, maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthRestAPIs {
@@ -64,6 +64,20 @@ public class AuthRestAPIs {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
+
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		String jwt = jwtProvider.generateJwtToken(authentication);
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+	}
+
+	@PostMapping("/sign-out")
+	public ResponseEntity<?> signoutUser(@RequestBody LoginForm loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
