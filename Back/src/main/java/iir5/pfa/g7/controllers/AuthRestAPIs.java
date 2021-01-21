@@ -4,7 +4,6 @@ import java.util.HashSet;
 
 import java.util.Set;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +24,17 @@ import iir5.pfa.g7.controllers.response.ResponseMessage;
 import iir5.pfa.g7.models.Role;
 import iir5.pfa.g7.models.RoleName;
 import iir5.pfa.g7.models.User;
+import iir5.pfa.g7.models.AdminRegional;
+import iir5.pfa.g7.models.Recenseur;
+import iir5.pfa.g7.models.Gestionnaire;
 import iir5.pfa.g7.repository.RoleRepository;
+import iir5.pfa.g7.repository.AdminRegionalRepository;
+import iir5.pfa.g7.repository.RecenseurRepository;
+import iir5.pfa.g7.repository.GestionnaireRepository;
 import iir5.pfa.g7.repository.UserRepository;
 import iir5.pfa.g7.request.LoginForm;
 import iir5.pfa.g7.request.SignUpForm;
 import iir5.pfa.g7.security.jwt.JwtProvider;
-
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -40,6 +44,12 @@ public class AuthRestAPIs {
 	@Autowired
 	AuthenticationManager authenticationManager;
 
+	@Autowired
+	AdminRegionalRepository adminRepository;
+	@Autowired
+	RecenseurRepository recenseurRepository;
+	@Autowired
+	GestionnaireRepository gestionaireRepository;
 	@Autowired
 	UserRepository userRepository;
 
@@ -79,38 +89,45 @@ public class AuthRestAPIs {
 		}
 
 		// Creating user's account
-		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
-				encoder.encode(signUpRequest.getPassword()));
+		User user = new User(signUpRequest.getNom(), signUpRequest.getPrenom(), signUpRequest.getUsername(),
+				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
-
-		
-		
-		strRoles.forEach(role -> {
-			switch (role) {
+		boolean erreur = false;
+		if (!strRoles.isEmpty()) {
+			switch (strRoles.iterator().next()) {
 			case "admin":
 				Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(adminRole);
-
+				AdminRegional a = new AdminRegional(user);
+				a.setRoles(roles);
+				adminRepository.save(a);
 				break;
 			case "gestionnaire":
 				Role pmRole = roleRepository.findByName(RoleName.ROLE_GESTIONNAIRE)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(pmRole);
-
+				Gestionnaire g = new Gestionnaire(user);
+				g.setRoles(roles);
+				gestionaireRepository.save(g);
 				break;
-			default:
+			case "recenseur":
 				Role userRole = roleRepository.findByName(RoleName.ROLE_RECENSEUR)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(userRole);
+//				user.setRoles(roles);
+				Recenseur r = new Recenseur(user);
+				r.setRoles(roles);
+				recenseurRepository.save(r);
+				break;
+			default:
+				erreur = true;
 			}
-		});
+		}
 
-		user.setRoles(roles);
-		userRepository.save(user);
-
-		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+		return !erreur ? new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK)
+				: new ResponseEntity<>(new ResponseMessage("User Role was Not Found!"), HttpStatus.BAD_REQUEST);
 	}
 }

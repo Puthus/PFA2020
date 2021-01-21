@@ -24,16 +24,18 @@ public class Region {
 	private String libelle;
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private AdminRegional adminRegional;
+
+	// TODO
 	@OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Lieu> lieux;
+	private List<Monument> monuments;
+
 	@OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Recenseur> recenseurs;
 
 	public Region() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public long getId() {
@@ -68,12 +70,12 @@ public class Region {
 		this.adminRegional = adminRegional;
 	}
 
-	public List<Lieu> getLieux() {
-		return lieux;
+	public List<Monument> getMonuments() {
+		return monuments;
 	}
 
-	public void setLieux(List<Lieu> lieux) {
-		this.lieux = lieux;
+	public void setMonuments(List<Monument> monuments) {
+		this.monuments = monuments;
 	}
 
 	public List<Recenseur> getRecenseurs() {

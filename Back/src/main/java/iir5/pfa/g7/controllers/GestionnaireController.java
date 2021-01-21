@@ -50,7 +50,7 @@ public class GestionnaireController {
 
 	@GetMapping(value = "/{name}")
 	public Gestionnaire findByNom(@PathVariable final String nom) {
-		return gestionnaireJpaRepository.findByName(nom);
+		return gestionnaireJpaRepository.findByNom(nom);
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)

@@ -24,8 +24,6 @@ public class Evenement {
 	private Monument monument;
 
 	public Evenement() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public long getId() {

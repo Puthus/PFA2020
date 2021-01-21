@@ -1,31 +1,18 @@
 package iir5.pfa.g7.models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "idUser")
 public class Gestionnaire extends User {
-
-	@OneToMany(mappedBy = "gestionnaire", fetch = FetchType.EAGER)
-	@JsonIgnore
-	private List<Compte> comptes;
 
 	public Gestionnaire() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public List<Compte> getComptes() {
-		return comptes;
+	
+	public Gestionnaire(User u) {
+		super(u);
 	}
-
-	public void setComptes(List<Compte> comptes) {
-		this.comptes = comptes;
-	}
-
+	
 }
