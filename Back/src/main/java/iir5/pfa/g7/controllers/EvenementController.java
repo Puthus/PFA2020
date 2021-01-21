@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import iir5.pfa.g7.models.Evenement;
 import iir5.pfa.g7.repository.EvenementRepository;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("evenements")
 public class EvenementController {
 

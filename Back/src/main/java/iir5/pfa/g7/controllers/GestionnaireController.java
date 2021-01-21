@@ -2,12 +2,12 @@ package iir5.pfa.g7.controllers;
 
 import java.util.HashMap;
 
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +21,7 @@ import iir5.pfa.g7.models.Gestionnaire;
 import iir5.pfa.g7.repository.GestionnaireRepository;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("gestionnaires")
 public class GestionnaireController {
 

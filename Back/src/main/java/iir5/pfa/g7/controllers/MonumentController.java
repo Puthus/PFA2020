@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import iir5.pfa.g7.models.Monument;
 import iir5.pfa.g7.repository.MonumentRepository;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("monuments")
 public class MonumentController {
 
