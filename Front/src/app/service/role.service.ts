@@ -1,13 +1,14 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Role } from "../modules/role";
+/* eslint-disable @typescript-eslint/ban-types */
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Role } from '../modules/role';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RoleService {
-  private url = "http://localhost:8080/roles";
+  private url = 'http://localhost:8080/roles';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<Role[]> {

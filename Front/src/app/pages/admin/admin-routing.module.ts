@@ -1,11 +1,11 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { ListMonumentComponent } from "./list-monument/list-monument.component";
-import { AdminComponent } from "./admin.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ListMonumentComponent } from './list-monument/list-monument.component';
+import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: ListMonumentComponent,
   },
 ];

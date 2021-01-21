@@ -6,18 +6,18 @@ import {
   OnInit,
   Output,
   ViewChild,
-} from "@angular/core";
-import { PositionModel } from "../entity/position.model";
+} from '@angular/core';
+import { PositionModel } from '../entity/position.model';
 
 @Component({
-  selector: "ngx-search",
-  templateUrl: "./search.component.html",
+  selector: 'ngx-search',
+  templateUrl: './search.component.html',
 })
 export class SearchComponent implements OnInit {
   @Output()
   positionChanged: EventEmitter<PositionModel> = new EventEmitter<PositionModel>();
 
-  @ViewChild("search", { static: true })
+  @ViewChild('search', { static: true })
   searchElementRef: ElementRef;
 
   constructor(private ngZone: NgZone) {}

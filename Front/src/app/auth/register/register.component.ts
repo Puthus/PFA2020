@@ -4,27 +4,27 @@ import {
   Component,
   Inject,
   OnInit,
-} from "@angular/core";
+} from '@angular/core';
 import {
   getDeepFromObject,
   NbAuthResult,
   NbAuthService,
   NB_AUTH_OPTIONS,
-} from "@nebular/auth";
-import { Router } from "@angular/router";
-import { Role, RoleName } from "../../modules/role";
-import { RoleService } from "../../service/role.service";
+} from '@nebular/auth';
+import { Router } from '@angular/router';
+import { Role, RoleName } from '../../modules/role';
+import { RoleService } from '../../service/role.service';
 
 @Component({
-  selector: "ngx-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"],
+  selector: 'ngx-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent implements OnInit {
-  redirectDelay: number = 0;
+  redirectDelay = 0;
   showMessages: any = {};
-  strategy: string = "username";
+  strategy = 'username';
 
   submitted = false;
   errors: string[] = [];
@@ -36,11 +36,11 @@ export class RegisterComponent implements OnInit {
     // protected roleService: RoleService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
-    protected router: Router
+    protected router: Router,
   ) {
-    this.redirectDelay = this.getConfigValue("forms.register.redirectDelay");
-    this.showMessages = this.getConfigValue("forms.register.showMessages");
-    this.strategy = this.getConfigValue("forms.register.strategy");
+    this.redirectDelay = this.getConfigValue('forms.register.redirectDelay');
+    this.showMessages = this.getConfigValue('forms.register.showMessages');
+    this.strategy = this.getConfigValue('forms.register.strategy');
   }
   ngOnInit(): void {
     // this.roleService.getAll().subscribe((data) => (this.roles = data["list"]));
@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
   register(): void {
     this.errors = this.messages = [];
     this.submitted = true;
-    this.user.role = new Array<String>();
+    this.user.role = new Array<string>();
     this.user.role.push(this.user.roleid);
     console.log(JSON.stringify(this.user));
     this.service
@@ -65,9 +65,7 @@ export class RegisterComponent implements OnInit {
 
         const redirect = result.getRedirect();
         if (redirect) {
-          setTimeout(() => {
-            return this.router.navigateByUrl(redirect);
-          }, this.redirectDelay);
+          setTimeout(() => this.router.navigateByUrl(redirect), this.redirectDelay);
         }
         this.cd.detectChanges();
       });

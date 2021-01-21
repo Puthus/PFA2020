@@ -1,4 +1,4 @@
-import { Monument } from "./monument";
+import { Monument } from './monument';
 export class Evenement {
   id: number;
   nom: string;

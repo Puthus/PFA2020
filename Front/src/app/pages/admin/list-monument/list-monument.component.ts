@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { SmartTableData } from "../../../@core/data/smart-table";
-import { LocalDataSource } from "ng2-smart-table";
+import { Component, OnInit } from '@angular/core';
+import { SmartTableData } from '../../../@core/data/smart-table';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
-  selector: "ngx-list-monument",
-  templateUrl: "./list-monument.component.html",
-  styleUrls: ["./list-monument.component.scss"],
+  selector: 'ngx-list-monument',
+  templateUrl: './list-monument.component.html',
+  styleUrls: ['./list-monument.component.scss'],
 })
 export class ListMonumentComponent implements OnInit {
   settings = {
@@ -25,28 +25,28 @@ export class ListMonumentComponent implements OnInit {
     },
     columns: {
       id: {
-        title: "ID",
-        type: "number",
+        title: 'ID',
+        type: 'number',
       },
       firstName: {
-        title: "First Name",
-        type: "string",
+        title: 'First Name',
+        type: 'string',
       },
       lastName: {
-        title: "Last Name",
-        type: "string",
+        title: 'Last Name',
+        type: 'string',
       },
       username: {
-        title: "Username",
-        type: "string",
+        title: 'Username',
+        type: 'string',
       },
       email: {
-        title: "E-mail",
-        type: "string",
+        title: 'E-mail',
+        type: 'string',
       },
       age: {
-        title: "Age",
-        type: "number",
+        title: 'Age',
+        type: 'number',
       },
     },
   };
@@ -59,7 +59,7 @@ export class ListMonumentComponent implements OnInit {
   ngOnInit(): void {}
 
   onDeleteConfirm(event): void {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Region } from "../modules/region";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Region } from '../modules/region';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RegionService {
-  private url = "http://localhost:8080/regions";
+  private url = 'http://localhost:8080/regions';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<Region[]> {

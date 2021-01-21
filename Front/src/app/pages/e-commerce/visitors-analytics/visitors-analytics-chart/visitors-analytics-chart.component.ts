@@ -77,9 +77,7 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
         backgroundColor: eTheme.tooltipBg,
         borderColor: eTheme.tooltipBorderColor,
         borderWidth: 1,
-        formatter: (params) => {
-          return Math.round(parseInt(params[0].value, 10));
-        },
+        formatter: (params) => Math.round(parseInt(params[0].value, 10)),
         extraCssText: eTheme.tooltipExtraCss,
       },
       xAxis: {

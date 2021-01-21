@@ -15,7 +15,7 @@ export class ECommerceVisitorsAnalyticsComponent implements OnDestroy {
 
   pieChartValue: number;
   chartLegend: {iconColor: string; title: string}[];
-  visitorsAnalyticsData: { innerLine: number[]; outerLine: OutlineData[]; };
+  visitorsAnalyticsData: { innerLine: number[]; outerLine: OutlineData[] };
 
   constructor(private themeService: NbThemeService,
               private visitorsAnalyticsChartService: VisitorsAnalyticsData) {
@@ -33,8 +33,8 @@ export class ECommerceVisitorsAnalyticsComponent implements OnDestroy {
       .pipe(takeWhile(() => this.alive))
       .subscribe(([innerLine, outerLine, pieChartValue]: [number[], OutlineData[], number]) => {
         this.visitorsAnalyticsData = {
-          innerLine: innerLine,
-          outerLine: outerLine,
+          innerLine,
+          outerLine,
         };
 
         this.pieChartValue = pieChartValue;
