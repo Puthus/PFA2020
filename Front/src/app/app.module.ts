@@ -16,7 +16,24 @@ import { httpInterceptorProviders } from "./auth/auth-interceptor";
 import { MapComponent } from "./map/map.component";
 import { DataTablesModule } from "angular-datatables";
 import { Ng2SmartTableModule } from "ng2-smart-table";
-
+import {
+  NbActionsModule,
+  NbContextMenuModule,
+  NbIconModule,
+  NbMenuModule,
+  NbSearchModule,
+  NbSelectModule,
+  NbThemeModule,
+  NbUserModule,
+} from "@nebular/theme";
+import { RouterModule } from "@angular/router"; // we also need angular router for Nebular to function properly
+import {
+  NbSidebarModule,
+  NbLayoutModule,
+  NbButtonModule,
+} from "@nebular/theme";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NbEvaIconsModule } from "@nebular/eva-icons";
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +52,19 @@ import { Ng2SmartTableModule } from "ng2-smart-table";
     Ng2SmartTableModule,
     HttpClientModule,
     DataTablesModule,
+    NbMenuModule.forRoot(),
+    NbLayoutModule,
+    NbSidebarModule.forRoot(),
+    NbButtonModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: "dark" }),
+    NbEvaIconsModule,
+    NbActionsModule,
+    NbSearchModule,
+    NbUserModule,
+    NbContextMenuModule,
+    NbSelectModule,
+    NbIconModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
