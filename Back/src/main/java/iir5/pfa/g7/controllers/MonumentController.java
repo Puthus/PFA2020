@@ -52,6 +52,12 @@ public class MonumentController {
 	public Monument findByNom(@PathVariable final String nom) {
 		return MonumentJpaRepository.findByNom(nom);
 	}
+	@GetMapping(value = "/{id}")
+	public Monument findById(@PathVariable final long id) {
+		Optional<Monument> m = MonumentJpaRepository.findById(id);
+		HashMap<String, Object> response = new HashMap<String, Object>();
+		return m.isPresent() ?m.get():null;
+	}
 
 	@PostMapping(value = "/create")
 	public void save(@RequestBody final Monument Monument) {
@@ -83,7 +89,6 @@ public class MonumentController {
 		HashMap<String, Object> response = new HashMap<String, Object>();
 
 		try {
-
 			Optional<Monument> Monument = MonumentJpaRepository.findById(id);
 
 			if (Monument.isPresent()) {

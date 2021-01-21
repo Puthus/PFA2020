@@ -1,27 +1,25 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { UsersListComponent } from "./users-list/users-list.component";
-import { RouterModule } from "@angular/router"; // we also need angular router for Nebular to function properly
-import {
-  NbSidebarModule,
-  NbLayoutModule,
-  NbButtonModule,
-  NbCardModule,
-} from "@nebular/theme";
-import { Ng2SmartTableModule } from "ng2-smart-table";
+import { NgModule } from '@angular/core';
+import { NbMenuModule } from '@nebular/theme';
+
+import { ThemeModule } from '../@theme/theme.module';
+import { PagesComponent } from './pages.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ECommerceModule } from './e-commerce/e-commerce.module';
+import { PagesRoutingModule } from './pages-routing.module';
+import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
 @NgModule({
-  declarations: [UsersListComponent],
   imports: [
-    CommonModule,
-    RouterModule, // RouterModule.forRoot(routes, { useHash: true }), if this is your app.module
-    NbLayoutModule,
-    NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
-    NbButtonModule,
-    NbCardModule,
-    Ng2SmartTableModule,
-    NbCardModule,
-    Ng2SmartTableModule,
+    PagesRoutingModule,
+    ThemeModule,
+    NbMenuModule,
+    DashboardModule,
+    ECommerceModule,
+    MiscellaneousModule,
+  ],
+  declarations: [
+    PagesComponent,
   ],
 })
-export class PagesModule {}
+export class PagesModule {
+}
