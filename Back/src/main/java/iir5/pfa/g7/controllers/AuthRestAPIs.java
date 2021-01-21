@@ -139,8 +139,14 @@ public class AuthRestAPIs {
 				erreur = true;
 			}
 		}
+		Authentication authentication = authenticationManager.authenticate(
+			new UsernamePasswordAuthenticationToken(signUpRequest.getUsername(), signUpRequest.getPassword()));
 
-		return !erreur ? new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK)
-				: new ResponseEntity<>(new ResponseMessage("User Role was Not Found!"), HttpStatus.BAD_REQUEST);
+	SecurityContextHolder.getContext().setAuthentication(authentication);
+
+	String jwt = jwtProvider.generateJwtToken(authentication);
+	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+	return !erreur ? ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities())):new ResponseEntity<>(new ResponseMessage("User Role was Not Found!","asdfasdfasdf"), HttpStatus.BAD_REQUEST); 
 	}
 }

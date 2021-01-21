@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { NbAuthComponent } from "@nebular/auth";
 import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
+import { SignoutComponent } from "./signout/signout.component";
 
 export const routes: Routes = [
   {
@@ -11,6 +13,14 @@ export const routes: Routes = [
       {
         path: "login",
         component: LoginComponent,
+      },
+      {
+        path: "register",
+        component: RegisterComponent,
+      },
+      {
+        path: "signout",
+        component: SignoutComponent,
       },
     ],
   },
