@@ -1,3 +1,26 @@
 <div class="container">
-  <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+  <table
+    datatable
+    [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger"
+    class="row-border hover"
+  >
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Last name</th>
+        <th>First name</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of data">
+        <td>{{ person.id }}</td>
+        <td>{{ person.nom }}</td>
+        <td>{{ person.prenom }}</td>
+        <td>{{ person.roles[0].name }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
 </div>

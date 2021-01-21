@@ -1,52 +1,75 @@
-import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from "@angular/core";
+import { Router } from "@angular/router";
+import { UserService } from "../services/user.service";
+import { Observable, Subject } from "rxjs";
+import { User } from "../model/user";
+import { Ng2SmartTableModule } from "ng2-smart-table";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.css"],
 })
-export class AdminComponent implements AfterViewInit, OnInit {
+export class AdminComponent implements OnDestroy, OnInit {
   board: string;
   errorMessage: string;
-  dtOptions: DataTables.Settings = {};
-  constructor(private userService: UserService,private renderer: Renderer2, private router: Router) { }
+  dtOptions: DataTables.Settings = {
+    pagingType: "full_numbers",
+    pageLength: 2,
+  };
+  dtTrigger: Subject<any> = new Subject<any>();
+  settings = {
+    columns: {
+      id: {
+        title: "ID",
+      },
+      nom: {
+        title: "Nom",
+      },
+      username: {
+        title: "Prenom",
+      },
+      email: {
+        title: "Email",
+      },
+      roles: {
+        title: "Role",
+        valuePrepareFunction: (data) => {
+          return data[0].name;
+        },
+      },
+    },
+  };
+  data: User[];
+
+  constructor(
+    private userService: UserService,
+    private renderer: Renderer2,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.userService.getAdminBoard().subscribe(
-      data => {
-        this.board = data;
+    this.userService.getUsers().subscribe(
+      (data) => {
+        this.data = data["list"];
+        this.dtTrigger.next();
+        console.table(this.data);
       },
-      error => {
-        this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
+      (error) => {
+        this.errorMessage = `${error.status}: ${
+          JSON.parse(error.error).message
+        }`;
       }
     );
-    this.dtOptions = {
-      ajax: 'data/data.json',
-      columns: [{
-        title: 'ID',
-        data: 'id'
-      }, {
-        title: 'First name',
-        data: 'firstName'
-      }, {
-        title: 'Last name',
-        data: 'lastName'
-      }, {
-        title: 'Action',
-        render: function (data: any, type: any, full: any) {
-          return 'View';
-        }
-      }]
-    };
   }
 
-  ngAfterViewInit(): void {
-    this.renderer.listen('document', 'click', (event) => {
-      if (event.target.hasAttribute("view-person-id")) {
-        this.router.navigate(["/person/" + event.target.getAttribute("view-person-id")]);
-      }
-    });
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 }

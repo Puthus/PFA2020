@@ -1,20 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RecenseurComponent } from './recenseur/recenseur.component';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
-import { GestionnaireComponent } from './gestionnaire/gestionnaire.component';
+import { AppComponent } from "./app.component";
+import { LoginComponent } from "./login/login.component";
+import { RecenseurComponent } from "./recenseur/recenseur.component";
+import { RegisterComponent } from "./register/register.component";
+import { HomeComponent } from "./home/home.component";
+import { AdminComponent } from "./admin/admin.component";
+import { GestionnaireComponent } from "./gestionnaire/gestionnaire.component";
 
-import { httpInterceptorProviders } from './auth/auth-interceptor';
-import { MapComponent } from './map/map.component';
-import { DataTablesModule } from 'angular-datatables';
+import { httpInterceptorProviders } from "./auth/auth-interceptor";
+import { MapComponent } from "./map/map.component";
+import { DataTablesModule } from "angular-datatables";
+import { Ng2SmartTableModule } from "ng2-smart-table";
 
 @NgModule({
   declarations: [
@@ -25,16 +26,17 @@ import { DataTablesModule } from 'angular-datatables';
     HomeComponent,
     AdminComponent,
     GestionnaireComponent,
-    MapComponent
+    MapComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    Ng2SmartTableModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
