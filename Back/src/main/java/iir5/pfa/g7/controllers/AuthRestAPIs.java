@@ -101,25 +101,24 @@ public class AuthRestAPIs {
 				Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(adminRole);
+				user.setRoles(roles);
 				AdminRegional a = new AdminRegional(user);
-				a.setRoles(roles);
 				adminRepository.save(a);
 				break;
 			case "gestionnaire":
 				Role pmRole = roleRepository.findByName(RoleName.ROLE_GESTIONNAIRE)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(pmRole);
+				user.setRoles(roles);
 				Gestionnaire g = new Gestionnaire(user);
-				g.setRoles(roles);
 				gestionaireRepository.save(g);
 				break;
 			case "recenseur":
 				Role userRole = roleRepository.findByName(RoleName.ROLE_RECENSEUR)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(userRole);
-//				user.setRoles(roles);
+				user.setRoles(roles);
 				Recenseur r = new Recenseur(user);
-				r.setRoles(roles);
 				recenseurRepository.save(r);
 				break;
 			default:

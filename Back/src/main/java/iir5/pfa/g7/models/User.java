@@ -48,13 +48,14 @@ public class User {
 		this.password = password;
 		this.active = false;
 	}
-	
+
 	public User(User u) {
 		this.nom = u.nom;
 		this.prenom = u.prenom;
 		this.username = u.username;
 		this.email = u.email;
 		this.password = u.password;
+		this.roles = u.roles;
 		this.active = u.active;
 	}
 
