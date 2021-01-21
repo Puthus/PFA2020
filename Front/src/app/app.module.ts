@@ -22,6 +22,7 @@ import {
 } from "@nebular/theme";
 import { NbAuthModule, NbPasswordAuthStrategy } from "@nebular/auth";
 import { httpInterceptorProviders } from "./auth/auth-interceptor";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,7 @@ import { httpInterceptorProviders } from "./auth/auth-interceptor";
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    FormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

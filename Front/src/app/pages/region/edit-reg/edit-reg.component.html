@@ -1,0 +1,19 @@
+<div class="col-md-6">
+  <h1>Ajout d'une region</h1>
+      <form>
+        <div class="form-group">
+          <label class="label">Nom</label>
+          <input type="text" nbInput fullWidth placeholder="Nom">
+        </div>
+        <div class="form-group">
+          <label class="label">Libelle</label>
+          <input type="text" nbInput fullWidth placeholder="Libelle">
+        </div>
+        <div class="form-group">
+          <label class="label">Admin Regional</label>
+          <select  name="adminreg" required ngModel>
+            <option *ngFor="let adm of admregs" [value]="adm.id">{{adm.nom}}</option>
+          </select>        </div>
+        <button type="submit" nbButton status="danger">Enregistrer</button>
+      </form>
+</div>

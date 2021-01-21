@@ -1,0 +1,8 @@
+<li class="list-group-item">
+  <h1>Etudiant : {{regionnom | uppercase}}</h1>
+  <input type="text" [(ngModel)]="regionnom" />
+  <input type="text" [(ngModel)]="regionLibelle" />
+  <input type="text" [(ngModel)]="regionadmin" />
+  <button class="btn btn-sm btn-warning" (click)="update()">Modifier</button>
+  <button class="btn btn-sm btn-danger" (click)="deleteRegion()">Supprimer</button>
+</li>

@@ -6,6 +6,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ECommerceComponent } from "./e-commerce/e-commerce.component";
 import { NotFoundComponent } from "./miscellaneous/not-found/not-found.component";
 import { AdminModule } from "./admin/admin.module";
+import { ListRegComponent } from './region/list-reg/list-reg.component';
+import { EditRegComponent } from './region/edit-reg/edit-reg.component';
 
 const routes: Routes = [
   {
@@ -17,13 +19,21 @@ const routes: Routes = [
         component: ECommerceComponent,
       },
       {
+        path: "regions",
+        component: ListRegComponent,
+      },
+      {
+        path: "ajoutreg",
+        component: EditRegComponent,
+      },
+      {
         path: "iot-dashboard",
         component: DashboardComponent,
       },
       {
         path: "admin",
         loadChildren: () =>
-          import("./admin/admin.module").then((m) => m.AdminModule),
+          import ("./admin/admin.module").then((m) => m.AdminModule),
       },
       {
         path: "layout",
