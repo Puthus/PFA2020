@@ -1,5 +1,6 @@
 package iir5.pfa.g7.controllers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import java.util.Set;
@@ -77,17 +78,18 @@ public class AuthRestAPIs {
 	}
 
 	@PostMapping("/sign-out")
-	public ResponseEntity<?> signoutUser(@RequestBody LoginForm loginRequest) {
+	public ResponseEntity<?> signoutUser() {
 
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		// Authentication authentication = authenticationManager.authenticate(
+		// 		new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+		// SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		String jwt = jwtProvider.generateJwtToken(authentication);
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		// String jwt = jwtProvider.generateJwtToken(authentication);
+		// UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+		// return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+		return ResponseEntity.ok(new JwtResponse("token", "username",new ArrayList<>()));
 	}
 
 	@PostMapping("/signup")
