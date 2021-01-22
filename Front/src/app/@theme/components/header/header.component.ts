@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from "@nebular/theme";
-import { NbAuthJWTToken, NbAuthService, NbAuthStrategy } from "@nebular/auth";
+import { NbAuthJWTToken, NbAuthService } from "@nebular/auth";
 import { LayoutService } from "../../../@core/utils";
 import { map, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
+import { RoleProvider } from "../../../auth/role.provider";
+import { NbAccessChecker } from "@nebular/security";
 
 @Component({
   selector: "ngx-header",
@@ -44,17 +46,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private themeService: NbThemeService,
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
-    private authService: NbAuthService
+    private authService: NbAuthService,
+    public accessChecker: NbAccessChecker
   ) {
     this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
       if (token.isValid()) {
         this.user = token.getPayload();
-        // console.log(this.user);
       }
     });
   }
 
   ngOnInit() {
+    // this.roleProvider.getRole().subscribe((data) => console.log("test", data));
     this.currentTheme = this.themeService.currentTheme;
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService

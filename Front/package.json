@@ -43,7 +43,7 @@
     "@asymmetrik/ngx-leaflet": "3.0.1",
     "@nebular/auth": "7.0.0",
     "@nebular/eva-icons": "7.0.0",
-    "@nebular/security": "7.0.0",
+    "@nebular/security": "^7.0.0",
     "@nebular/theme": "7.0.0",
     "@swimlane/ngx-charts": "^14.0.0",
     "angular2-chartjs": "0.4.1",

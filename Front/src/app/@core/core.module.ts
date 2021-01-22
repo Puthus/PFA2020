@@ -47,6 +47,7 @@ import { VisitorsAnalyticsService } from "./mock/visitors-analytics.service";
 import { SecurityCamerasService } from "./mock/security-cameras.service";
 import { MockDataModule } from "./mock/mock-data.module";
 import { RoleProvider } from "../auth/role.provider";
+import { httpInterceptorProviders } from "../auth/auth-interceptor";
 
 const socialLinks = [
   {
@@ -101,32 +102,6 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
 export const NB_CORE_PROVIDERS = [
   ...MockDataModule.forRoot().providers,
   ...DATA_SERVICES,
-  NbSecurityModule.forRoot({
-    accessControl: {
-      guest: {
-        view: ["monument", "map"],
-      },
-      gestionaire: {
-        parent: "guest",
-        create: ["user"],
-        edit: "user",
-        remove: "user",
-      },
-      recensseur: {
-        parent: "guest",
-        create: ["monument"],
-        edit: "monument",
-        remove: "monument",
-      },
-      admin: {
-        parent: "guest",
-        create: ["travail", "event"],
-        edit: ["travail", "event", "monument"],
-        remove: ["travail", "event", "monument"],
-      },
-    },
-  }).providers,
-  { provide: NbRoleProvider, useClass: RoleProvider },
   AnalyticsService,
   LayoutService,
   PlayerService,
@@ -146,7 +121,7 @@ export const NB_CORE_PROVIDERS = [
             endpoint: "/api/auth/signin",
             method: "post",
             redirect: {
-              success: "/dashboard/",
+              success: "pages/dashboard",
               failure: null, // stay on the same page
             },
           },
@@ -204,6 +179,28 @@ export const NB_CORE_PROVIDERS = [
         },
       },
     }),
+    NbSecurityModule.forRoot({
+      accessControl: {
+        ROLE_GUEST: {
+          view: "guest",
+        },
+        ROLE_GESTIONNAIRE: {
+          view: ["gestionnaire", "logged"],
+          create: "gestionnaire",
+          remove: "gestionnaire",
+        },
+        ROLE_RECENSEUR: {
+          view: ["recenseur", "logged"],
+          create: "recenseur",
+          remove: "recenseur",
+        },
+        ROLE_ADMIN: {
+          view: ["admin", "logged"],
+          create: "admin",
+          remove: "admin",
+        },
+      },
+    }),
   ],
   exports: [NbAuthModule],
   declarations: [],
@@ -216,7 +213,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
-      providers: [...NB_CORE_PROVIDERS],
+      providers: [...NB_CORE_PROVIDERS, { provide: NbRoleProvider, useClass: RoleProvider }, httpInterceptorProviders],
     };
   }
 }

@@ -21,17 +21,21 @@
     <nb-action class="control-item">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action>
-    <nb-action class="control-item" icon="email-outline"></nb-action>
-    <nb-action class="control-item" icon="bell-outline"></nb-action>
-    <!-- <nb-action class="user-action" *nbIsGranted="['view', 'user']"> -->
-    <nb-action class="user-action">
-      <nb-user
-        [nbContextMenu]="userMenu"
-        [onlyPicture]="userPictureOnly"
-        [name]="user?.sub"
-        [picture]="user?.picture"
-      >
-      </nb-user>
+    <nb-action
+      class="control-item"
+      icon="log-in-outline"
+      link="/auth/login"
+      *nbIsGranted="['view', 'guest']"
+    >
+      Login
+    </nb-action>
+    <nb-action
+      class="control-item"
+      icon="log-out-outline"
+      link="/auth/signout"
+      *nbIsGranted="['view', 'logged']"
+    >
+      Login
     </nb-action>
   </nb-actions>
 </div>
