@@ -1,116 +1,116 @@
-import { NbMenuItem } from "@nebular/theme";
-import { CanActivate } from "@angular/router";
+import { NbMenuItem } from '@nebular/theme';
+import { CanActivate } from '@angular/router';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: "All",
+    title: 'All',
     group: true,
   },
   {
-    title: "Map des monuments",
-    icon: "map-outline",
-    link: "/pages/maps/leaflet",
+    title: 'Map des monuments',
+    icon: 'map-outline',
+    link: '/pages/maps/leaflet',
     home: true,
   },
   {
-    title: "Admin",
+    title: 'Admin',
     group: true,
   },
   {
-    title: "Monuments",
-    icon: "layout-outline",
+    title: 'Monuments',
+    icon: 'layout-outline',
     children: [
       {
-        title: "List",
-        link: "/pages/admin/list-monument",
+        title: 'List',
+        link: '/pages/admin/list-monument',
       },
     ],
   },
   {
-    title: "Region",
-    icon: "layout-outline",
+    title: 'Region',
+    icon: 'layout-outline',
     children: [
       {
-        title: "List",
-        link: "/pages/admin/list-region",
+        title: 'List',
+        link: '/pages/admin/list-region',
       },
       {
-        title: "Ajouter",
-        link: "/pages/admin/add-region",
+        title: 'Ajouter',
+        link: '/pages/admin/add-region',
       },
     ],
   },
   {
-    title: "Traveaux",
-    icon: "layout-outline",
+    title: 'Traveaux',
+    icon: 'layout-outline',
     children: [
       {
-        title: "List",
-        link: "/pages/admin/list-travail",
+        title: 'List',
+        link: '/pages/admin/list-travail',
       },
       {
-        title: "Ajouter",
-        link: "/pages/admin/add-travail",
+        title: 'Ajouter',
+        link: '/pages/admin/add-travail',
       },
     ],
   },
   {
-    title: "Constat",
-    icon: "layout-outline",
+    title: 'Constat',
+    icon: 'layout-outline',
     children: [
       {
-        title: "List",
-        link: "/pages/admin/list-constat",
+        title: 'List',
+        link: '/pages/admin/list-constat',
       },
     ],
   },
   {
-    title: "Recenseur",
+    title: 'Recenseur',
     group: true,
   },
   {
-    title: "Monuments",
-    icon: "layout-outline",
+    title: 'Monuments',
+    icon: 'layout-outline',
     children: [
       {
-        title: "List des monuments",
-        link: "/pages/recenseur/list-monument",
+        title: 'List des monuments',
+        link: '/pages/recenseur/list-monument',
       },
       {
-        title: "Ajouter",
-        link: "/pages/recenseur/add-monument",
+        title: 'Ajouter',
+        link: '/pages/recenseur/add-monument',
       },
     ],
   },
   {
-    title: "Constats",
-    icon: "layout-outline",
+    title: 'Constats',
+    icon: 'layout-outline',
     children: [
       {
-        title: "List des constats",
-        link: "/pages/recenseur/list-constat",
+        title: 'List des constats',
+        link: '/pages/recenseur/list-constat',
       },
       {
-        title: "Ajouter",
-        link: "/pages/recenseur/add-constat",
+        title: 'Ajouter',
+        link: '/pages/recenseur/add-constat',
       },
     ],
   },
   {
-    title: "Gestionnaire",
+    title: 'Gestionnaire',
     group: true,
   },
   {
-    title: "Users",
-    icon: "layout-outline",
+    title: 'Users',
+    icon: 'layout-outline',
     children: [
       {
-        title: "List des users",
-        link: "/pages/gestionnaire/list-user",
+        title: 'List des users',
+        link: '/pages/gestionnaire/list-user',
       },
       {
-        title: "Ajouter",
-        link: "/pages/gestionnaire/add-monument",
+        title: 'Ajouter',
+        link: '/pages/gestionnaire/add-user',
       },
     ],
   },

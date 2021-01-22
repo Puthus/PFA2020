@@ -1,16 +1,16 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { AddUserComponent } from "./add-user/add-user.component";
-import { GestionnaireComponent } from "./gestionnaire.component";
-import { ListUserComponent } from "./list-users/list-users.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AddUserComponent } from './add-user/add-user.component';
+import { GestionnaireComponent } from './gestionnaire.component';
+import { ListUserComponent } from './list-user/list-user.component';
 
 const routes: Routes = [
   {
-    path: "list-user",
+    path: 'list-user',
     component: ListUserComponent,
   },
   {
-    path: "add-user",
+    path: 'add-user',
     component: AddUserComponent,
   },
 ];
@@ -21,4 +21,8 @@ const routes: Routes = [
 })
 export class GestionnaireRoutingModule {}
 
-export const routedComponents = [GestionnaireComponent, ListUserComponent];
+export const routedComponents = [
+  GestionnaireComponent,
+  ListUserComponent,
+  AddUserComponent,
+];

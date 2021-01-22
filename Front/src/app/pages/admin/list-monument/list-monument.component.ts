@@ -1,14 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { SmartTableData } from "../../../@core/data/smart-table";
-import { LocalDataSource } from "ng2-smart-table";
-import { Monument } from "../../../modules/monument";
-import { UsersService } from "../../../service/users.service";
-import { MonumentService } from "../../../service/monument.service";
+import { Component, OnInit } from '@angular/core';
+import { SmartTableData } from '../../../@core/data/smart-table';
+import { LocalDataSource } from 'ng2-smart-table';
+import { Monument } from '../../../modules/monument';
+import { UsersService } from '../../../service/users.service';
+import { MonumentService } from '../../../service/monument.service';
+import { AdminRegional } from '../../../modules/admin-regional';
+import { Recenseur } from '../../../modules/recenseur';
+import { Region } from '../../../modules/region';
 
 @Component({
-  selector: "ngx-list-monument",
-  templateUrl: "./list-monument.component.html",
-  styleUrls: ["./list-monument.component.scss"],
+  selector: 'ngx-list-monument',
+  templateUrl: './list-monument.component.html',
+  styleUrls: ['./list-monument.component.scss'],
 })
 export class ListMonumentComponent implements OnInit {
   settings = {
@@ -28,48 +31,57 @@ export class ListMonumentComponent implements OnInit {
     },
     columns: {
       id: {
-        title: "ID",
-        type: "number",
+        title: 'ID',
+        type: 'number',
       },
       nom: {
-        title: "Nom",
-        type: "string",
+        title: 'Nom',
+        type: 'string',
       },
       latitude: {
-        title: "Latitude",
-        type: "number",
+        title: 'Latitude',
+        type: 'number',
       },
       longitude: {
-        title: "Longitude",
-        type: "number",
+        title: 'Longitude',
+        type: 'number',
       },
       region: {
-        title: "Region",
-        type: "Region",
+        title: 'Region',
+        type: 'string',
+        valuePrepareFunction: (data: Region) => {
+          return data != null ? data.nom : '';
+        },
       },
       recenseur: {
-        title: "Recenseur",
-        type: "Recenseur",
+        title: 'Recenseur',
+        type: 'string',
+        valuePrepareFunction: (data: Recenseur) => {
+          return data != null ? data.nom + ' ' + data.prenom : '';
+        },
       },
       adminRegional: {
-        title: "Admin Regional",
-        type: "AdminRegional",
+        title: 'Admin Regional',
+        type: 'string',
+        valuePrepareFunction: (data: AdminRegional) => {
+          return data != null ? data.nom + ' ' + data.prenom : '';
+        },
       },
       dateCreation: {
-        title: "Date de creation",
-        type: "Date",
+        title: 'Date de creation',
+        type: 'Date',
       },
     },
   };
   source: Monument[];
   constructor(private service: MonumentService) {
-    this.service.getAll().subscribe((data) => (this.source = data["list"]));
+    this.service.getAll().subscribe((data) => (this.source = data['list']));
   }
 
   ngOnInit(): void {}
 
   onDeleteConfirm(event): void {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

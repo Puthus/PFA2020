@@ -21,7 +21,7 @@ import iir5.pfa.g7.repository.TravailRepository;
 
 @RestController
 @CrossOrigin(origins={"http://localhost:4200","http://localhost:4201"})
-@RequestMapping("travaux")
+@RequestMapping("travails")
 public class TravailController {
 
 	@Autowired

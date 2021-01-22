@@ -3,25 +3,25 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { Component, Inject, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { getDeepFromObject, NbAuthResult, NbAuthService, NB_AUTH_OPTIONS } from "@nebular/auth";
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { getDeepFromObject, NbAuthResult, NbAuthService, NB_AUTH_OPTIONS } from '@nebular/auth';
 
 @Component({
-  selector: "nb-logout",
-  templateUrl: "./signout.component.html",
+  selector: 'nb-logout',
+  templateUrl: './signout.component.html',
 })
 export class SignoutComponent implements OnInit {
-  redirectDelay: number = 0;
-  strategy: string = "username";
+  redirectDelay = 0;
+  strategy = 'username';
 
   constructor(
     protected service: NbAuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
-    protected router: Router
+    protected router: Router,
   ) {
-    this.redirectDelay = this.getConfigValue("forms.logout.redirectDelay");
-    this.strategy = this.getConfigValue("forms.logout.strategy");
+    this.redirectDelay = this.getConfigValue('forms.logout.redirectDelay');
+    this.strategy = this.getConfigValue('forms.logout.strategy');
   }
 
   ngOnInit(): void {
@@ -32,9 +32,7 @@ export class SignoutComponent implements OnInit {
     this.service.logout(strategy).subscribe((result: NbAuthResult) => {
       const redirect = result.getRedirect();
       if (redirect) {
-        setTimeout(() => {
-          return this.router.navigateByUrl(redirect);
-        }, this.redirectDelay);
+        setTimeout(() => this.router.navigateByUrl(redirect), this.redirectDelay);
       }
     });
   }

@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
-import { User } from "../modules/user";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../modules/user';
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class UsersService {
-  private url = "http://localhost:8080/users";
+  private url = 'http://localhost:8080/users';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<User[]> {

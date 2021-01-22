@@ -1,1 +1,178 @@
-<p>add-monument works!</p>
+<div class="col-lg-12">
+  <nb-card>
+    <nb-card-header>Create User</nb-card-header>
+    <nb-card-body>
+      <nb-alert
+        *ngIf="showMessages.error && errors?.length && !submitted"
+        outline="danger"
+        role="alert"
+      >
+        <p class="alert-title"><b>Oh snap!</b></p>
+        <ul class="alert-message-list">
+          <li *ngFor="let error of errors" class="alert-message">
+            {{ error }}
+          </li>
+        </ul>
+      </nb-alert>
+
+      <nb-alert
+        *ngIf="showMessages.success && messages?.length && !submitted"
+        outline="success"
+        role="alert"
+      >
+        <p class="alert-title"><b>Hooray!</b></p>
+        <ul class="alert-message-list">
+          <li *ngFor="let message of messages" class="alert-message">
+            {{ message }}
+          </li>
+        </ul>
+      </nb-alert>
+
+      <form (ngSubmit)="register()" #form="ngForm" aria-labelledby="title">
+        <div class="form-control-group">
+          <label class="label" for="input-name">Nom:</label>
+          <input
+            nbInput
+            [(ngModel)]="user.nom"
+            #nom="ngModel"
+            id="input-name"
+            name="nom"
+            placeholder="Nom"
+            autofocus
+            fullWidth
+            shape="semi-round"
+            [status]="nom.dirty ? (nom.invalid ? 'danger' : 'success') : ''"
+            [required]="getConfigValue('forms.validation.nom.required')"
+            [minlength]="getConfigValue('forms.validation.nom.minLength')"
+            [maxlength]="getConfigValue('forms.validation.nom.maxLength')"
+            [attr.aria-invalid]="nom.invalid && nom.touched ? true : null"
+          />
+          <ng-container *ngIf="nom.invalid && nom.touched">
+            <p class="error-message" *ngIf="nom.errors?.required">
+              Nom est requis!
+            </p>
+            <p
+              class="error-message"
+              *ngIf="nom.errors?.minlength || nom.errors?.maxlength"
+            >
+              Full name should contains from
+              {{ getConfigValue('forms.validation.nom.minLength') }} to
+              {{ getConfigValue('forms.validation.nom.maxLength') }}
+              characters
+            </p>
+          </ng-container>
+        </div>
+
+        <div class="form-control-group">
+          <label class="label" for="input-name">Latitude:</label>
+          <input
+            nbInput
+            [(ngModel)]="user.latitude"
+            #latitude="ngModel"
+            id="input-latitude"
+            name="latitude"
+            placeholder="Latitude"
+            autofocus
+            fullWidth
+            shape="semi-round"
+            [status]="
+              latitude.dirty ? (latitude.invalid ? 'danger' : 'success') : ''
+            "
+            [required]="getConfigValue('forms.validation.latitude.required')"
+            [minlength]="getConfigValue('forms.validation.latitude.minLength')"
+            [maxlength]="getConfigValue('forms.validation.latitude.maxLength')"
+            [attr.aria-invalid]="
+              latitude.invalid && latitude.touched ? true : null
+            "
+          />
+          <ng-container *ngIf="latitude.invalid && latitude.touched">
+            <p class="error-message" *ngIf="latitude.errors?.required">
+              Latitude est requis!
+            </p>
+            <p
+              class="error-message"
+              *ngIf="latitude.errors?.minlength || latitude.errors?.maxlength"
+            >
+              Full name should contains from
+              {{ getConfigValue('forms.validation.latitude.minLength') }} to
+              {{ getConfigValue('forms.validation.latitude.maxLength') }}
+              characters
+            </p>
+          </ng-container>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-longitude">Longitude :</label>
+          <input
+            nbInput
+            [(ngModel)]="user.longitude"
+            #longitude="ngModel"
+            id="input-longitude"
+            name="longitude"
+            placeholder="Longitude"
+            fullWidth
+            shape="semi-round"
+            [status]="
+              longitude.dirty ? (longitude.invalid ? 'danger' : 'success') : ''
+            "
+            [required]="getConfigValue('forms.validation.longitude.required')"
+            [attr.aria-invalid]="
+              longitude.invalid && longitude.touched ? true : null
+            "
+          />
+          <ng-container *ngIf="longitude.invalid && longitude.touched">
+            <p class="error-message" *ngIf="longitude.errors?.required">
+              longitude is required!
+            </p>
+            <p class="error-message" *ngIf="longitude.errors?.pattern">
+              longitude should be the real one!
+            </p>
+          </ng-container>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-dateCreation"
+            >Date de creation:</label
+          >
+          <input
+            nbInput
+            id="input-dateCreation"
+            [(ngModel)]="user.dateCreation"
+            name="dateCreation"
+            fullWidth
+            shape="semi-round"
+            placeholder="Date de creation"
+            [nbDatepicker]="formpicker"
+          />
+          <nb-datepicker #formpicker></nb-datepicker>
+        </div>
+
+        <div class="form-control-group">
+          <label class="label" for="input-region">Region :</label>
+          <nb-select
+            id="input-region"
+            selected="1"
+            fullWidth
+            [(ngModel)]="user.region"
+            name="region"
+          >
+            <nb-option *ngFor="let region of regions" value="{{ region.id }}">{{
+              region.libelle
+            }}</nb-option>
+          </nb-select>
+        </div>
+        <div class="buttons-row">
+          <button
+            nbButton
+            fullWidth
+            shape="semi-round"
+            status="success"
+            [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted"
+            nbButton
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>

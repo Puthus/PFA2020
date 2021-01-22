@@ -1,9 +1,9 @@
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { NbAuthService } from "@nebular/auth";
-import { HttpInterceptor, HttpHandler, HttpRequest } from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { NbAuthService } from '@nebular/auth';
+import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
-const TOKEN_HEADER_KEY = "Authorization";
+const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
     token.subscribe((data) => {
       if (data != null) {
         authReq = req.clone({
-          headers: req.headers.set(TOKEN_HEADER_KEY, "Bearer " + data["token"]),
+          headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + data['token']),
         });
       }
     });

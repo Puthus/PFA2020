@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
-import { Monument } from "../modules/monument";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Monument } from '../modules/monument';
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MonumentService {
-  private url = "http://localhost:8080/monuments";
+  private url = 'http://localhost:8080/monuments';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<Monument[]> {
