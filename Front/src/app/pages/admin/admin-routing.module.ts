@@ -18,10 +18,6 @@ const routes: Routes = [
     component: ListRegionComponent,
   },
   {
-    path: 'add-region',
-    component: AddRegionComponent,
-  },
-  {
     path: 'list-travail',
     component: ListTravailComponent,
   },

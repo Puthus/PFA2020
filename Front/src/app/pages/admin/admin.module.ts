@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule } from '@nebular/theme';
+import {
+  NbCardModule,
+  NbIconModule,
+  NbInputModule,
+  NbTreeGridModule,
+} from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -11,6 +16,7 @@ import { AddTravailComponent } from './add-travail/add-travail.component';
 import { ListConstatComponent } from './list-constat/list-constat.component';
 import { AdminComponent } from './admin.component';
 import { ListMonumentComponent } from './list-monument/list-monument.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -21,6 +27,7 @@ import { ListMonumentComponent } from './list-monument/list-monument.component';
     NbInputModule,
     ThemeModule,
     Ng2SmartTableModule,
+    FormsModule,
   ],
   declarations: [
     AdminComponent,

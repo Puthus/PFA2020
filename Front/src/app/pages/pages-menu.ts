@@ -1,5 +1,4 @@
 import { NbMenuItem } from '@nebular/theme';
-import { CanActivate } from '@angular/router';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
@@ -33,10 +32,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'List',
         link: '/pages/admin/list-region',
-      },
-      {
-        title: 'Ajouter',
-        link: '/pages/admin/add-region',
       },
     ],
   },
