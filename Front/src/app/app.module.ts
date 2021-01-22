@@ -20,9 +20,8 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from "@nebular/theme";
-import { NbAuthModule, NbPasswordAuthStrategy } from "@nebular/auth";
 import { httpInterceptorProviders } from "./auth/auth-interceptor";
-import { FormsModule } from '@angular/forms';
+import { AuthGuardService } from "./auth-guard.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,9 +41,8 @@ import { FormsModule } from '@angular/forms';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    FormsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

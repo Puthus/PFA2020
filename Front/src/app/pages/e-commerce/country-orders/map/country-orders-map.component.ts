@@ -130,9 +130,7 @@ export class CountryOrdersMapComponent implements OnDestroy {
 
   private findFeatureLayerByCountryId(id) {
     const layers = this.layers[0].getLayers();
-    const featureLayer = layers.find(item => {
-      return item.feature.id === id;
-    });
+    const featureLayer = layers.find(item => item.feature.id === id);
 
     return featureLayer ? featureLayer : null;
   }

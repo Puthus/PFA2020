@@ -5,7 +5,7 @@ import { AdminComponent } from "./admin.component";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "list",
     component: ListMonumentComponent,
   },
 ];

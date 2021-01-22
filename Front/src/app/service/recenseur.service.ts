@@ -1,13 +1,14 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Recenseur } from "../modules/recenseur";
-import { Observable } from "rxjs/Observable";
+/* eslint-disable @typescript-eslint/ban-types */
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Recenseur } from '../modules/recenseur';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RecenseurService {
-  private url = "http://localhost:8080/recenseurs";
+  private url = 'http://localhost:8080/recenseurs';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<Recenseur[]> {

@@ -2,14 +2,17 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AdminRegional } from "../modules/admin-regional";
 import { Observable } from "rxjs/Observable";
-import { NbAuthService } from '@nebular/auth';
+import { NbAuthService } from "@nebular/auth";
 
 @Injectable({
   providedIn: "root",
 })
 export class AdminRegionalService {
   private url = "http://localhost:8080/adminRegionals";
-  constructor(private http: HttpClient) {}
+  private options = { Authorization: "" };
+  constructor(private http: HttpClient, private auth: NbAuthService) {
+    // this.options.Authorization =
+  }
 
   public getAll(): Observable<AdminRegional[]> {
     return this.http.get<AdminRegional[]>(`${this.url}/list`);

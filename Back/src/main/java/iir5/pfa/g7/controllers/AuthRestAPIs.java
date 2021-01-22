@@ -1,5 +1,6 @@
 package iir5.pfa.g7.controllers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import java.util.Set;
@@ -35,7 +36,8 @@ import iir5.pfa.g7.repository.UserRepository;
 import iir5.pfa.g7.request.LoginForm;
 import iir5.pfa.g7.request.SignUpForm;
 import iir5.pfa.g7.security.jwt.JwtProvider;
-
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 @CrossOrigin(origins={"*"}, maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
@@ -61,33 +63,30 @@ public class AuthRestAPIs {
 
 	@Autowired
 	JwtProvider jwtProvider;
-
+	// private static final Logger logger = LoggerFactory.getLogger(AuthRestAPIs.class);
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-
-		String jwt = jwtProvider.generateJwtToken(authentication);
+				
+		String rolejwt = jwtProvider.generateRoleJwtToken(authentication);
+		String accesjwt = jwtProvider.generateJwtToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+		
+		// logger.error("#LOG - Username : "+ loginRequest.getUsername());
+		// logger.error("#LOG - Password : "+ loginRequest.getPassword());
+		// logger.error("#LOG - authenti : "+ authentication);
+		// logger.error("#LOG - jwt : "+ jwt);
+		// logger.error("#LOG - authenti : "+ userDetails.getAuthorities());
+		
+		return ResponseEntity.ok(new JwtResponse(rolejwt,accesjwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	}
 
 	@PostMapping("/sign-out")
-	public ResponseEntity<?> signoutUser(@RequestBody LoginForm loginRequest) {
-
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-
-		String jwt = jwtProvider.generateJwtToken(authentication);
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+	public ResponseEntity<?> signoutUser() {
+		return ResponseEntity.ok(new JwtResponse("token","token", "username",new ArrayList<>()));
 	}
 
 	@PostMapping("/signup")
@@ -139,8 +138,15 @@ public class AuthRestAPIs {
 				erreur = true;
 			}
 		}
+		Authentication authentication = authenticationManager.authenticate(
+			new UsernamePasswordAuthenticationToken(signUpRequest.getUsername(), signUpRequest.getPassword()));
 
-		return !erreur ? new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK)
-				: new ResponseEntity<>(new ResponseMessage("User Role was Not Found!"), HttpStatus.BAD_REQUEST);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		String jwt = jwtProvider.generateJwtToken(authentication);
+		String rolejwt = jwtProvider.generateRoleJwtToken(authentication);
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+		return !erreur ? ResponseEntity.ok(new JwtResponse(rolejwt,jwt, userDetails.getUsername(), userDetails.getAuthorities())):new ResponseEntity<>(new ResponseMessage("User Role was Not Found!","asdfasdfasdf"), HttpStatus.BAD_REQUEST); 
 	}
 }

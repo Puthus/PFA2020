@@ -55,7 +55,7 @@ public class MonumentController {
 	@GetMapping(value = "/{id}")
 	public Monument findById(@PathVariable final long id) {
 		Optional<Monument> m = MonumentJpaRepository.findById(id);
-		HashMap<String, Object> response = new HashMap<String, Object>();
+		//HashMap<String, Object> response = new HashMap<String, Object>();
 		return m.isPresent() ?m.get():null;
 	}
 

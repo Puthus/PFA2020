@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Gestionnaire } from "../modules/gestionnaire";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Gestionnaire } from '../modules/gestionnaire';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class GestionnaireService {
-  private url = "http://localhost:8080/gestionnaires";
+  private url = 'http://localhost:8080/gestionnaires';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<Gestionnaire[]> {

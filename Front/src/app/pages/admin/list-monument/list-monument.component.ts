@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { SmartTableData } from "../../../@core/data/smart-table";
 import { LocalDataSource } from "ng2-smart-table";
+import { Monument } from "../../../modules/monument";
+import { UsersService } from "../../../service/users.service";
+import { MonumentService } from "../../../service/monument.service";
 
 @Component({
   selector: "ngx-list-monument",
@@ -28,32 +31,39 @@ export class ListMonumentComponent implements OnInit {
         title: "ID",
         type: "number",
       },
-      firstName: {
-        title: "First Name",
+      nom: {
+        title: "Nom",
         type: "string",
       },
-      lastName: {
-        title: "Last Name",
-        type: "string",
-      },
-      username: {
-        title: "Username",
-        type: "string",
-      },
-      email: {
-        title: "E-mail",
-        type: "string",
-      },
-      age: {
-        title: "Age",
+      latitude: {
+        title: "Latitude",
         type: "number",
+      },
+      longitude: {
+        title: "Longitude",
+        type: "number",
+      },
+      region: {
+        title: "Region",
+        type: "Region",
+      },
+      recenseur: {
+        title: "Recenseur",
+        type: "Recenseur",
+      },
+      adminRegional: {
+        title: "Admin Regional",
+        type: "AdminRegional",
+      },
+      dateCreation: {
+        title: "Date de creation",
+        type: "Date",
       },
     },
   };
-  source: LocalDataSource = new LocalDataSource();
-  constructor(private service: SmartTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  source: Monument[];
+  constructor(private service: MonumentService) {
+    this.service.getAll().subscribe((data) => (this.source = data));
   }
 
   ngOnInit(): void {}

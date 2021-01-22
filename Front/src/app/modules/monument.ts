@@ -1,9 +1,9 @@
-import { Region } from "./region";
-import { AdminRegional } from "./admin-regional";
-import { Recenseur } from "./recenseur";
-import { Evenement } from "./evenement";
-import { Constat } from "./constat";
-import { Travail } from "./travail";
+import { Region } from './region';
+import { AdminRegional } from './admin-regional';
+import { Recenseur } from './recenseur';
+import { Evenement } from './evenement';
+import { Constat } from './constat';
+import { Travail } from './travail';
 export class Monument {
   id: number;
   nom: string;

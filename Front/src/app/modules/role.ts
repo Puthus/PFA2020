@@ -1,7 +1,8 @@
+/* eslint-disable no-shadow */
 export enum RoleName {
-  ROLE_GESTIONNAIRE,
-  ROLE_RECENSEUR,
-  ROLE_ADMIN,
+  roleGestionnaire,
+  roleRecenseur,
+  roleAdmin,
 }
 export class Role {
   id: number;
