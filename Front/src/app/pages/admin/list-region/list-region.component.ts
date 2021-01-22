@@ -1,16 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { SmartTableData } from "../../../@core/data/smart-table";
-import { LocalDataSource } from "ng2-smart-table";
-import { Monument } from "../../../modules/monument";
-import { UsersService } from "../../../service/users.service";
-import { MonumentService } from "../../../service/monument.service";
+import { Component, OnInit } from '@angular/core';
+import {Region} from "../../../modules/region";
+import {RegionService} from "../../../service/region.service";
 
 @Component({
-  selector: "ngx-list-monument",
-  templateUrl: "./list-monument.component.html",
-  styleUrls: ["./list-monument.component.scss"],
+  selector: 'ngx-list-region',
+  templateUrl: './list-region.component.html',
+  styleUrls: ['./list-region.component.scss']
 })
-export class ListMonumentComponent implements OnInit {
+export class ListRegionComponent implements OnInit {
   settings = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
@@ -35,34 +32,18 @@ export class ListMonumentComponent implements OnInit {
         title: "Nom",
         type: "string",
       },
-      latitude: {
-        title: "Latitude",
-        type: "number",
-      },
-      longitude: {
-        title: "Longitude",
-        type: "number",
-      },
-      region: {
-        title: "Region",
-        type: "Region",
-      },
-      recenseur: {
-        title: "Recenseur",
-        type: "Recenseur",
+      libelle: {
+        title: "Libelle",
+        type: "string",
       },
       adminRegional: {
         title: "Admin Regional",
         type: "AdminRegional",
       },
-      dateCreation: {
-        title: "Date de creation",
-        type: "Date",
-      },
     },
   };
-  source: Monument[];
-  constructor(private service: MonumentService) {
+  source: Region[];
+  constructor(private service: RegionService) {
     this.service.getAll().subscribe((data) => (this.source = data["list"]));
   }
 

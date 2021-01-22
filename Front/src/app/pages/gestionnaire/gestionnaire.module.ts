@@ -1,20 +1,35 @@
 import { NgModule } from "@angular/core";
-import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule } from "@nebular/theme";
-import { Ng2SmartTableModule } from "ng2-smart-table";
-
-import { ThemeModule } from "../../@theme/theme.module";
+import {
+  NbInputModule,
+  NbRadioModule,
+  NbAlertModule,
+  NbButtonModule,
+  NbCheckboxModule,
+  NbCardModule,
+} from "@nebular/theme";
 import { GestionnaireRoutingModule, routedComponents } from "./gestionnaire-routing.module";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { Ng2SmartTableModule } from "ng2-smart-table";
+import { FormsModule } from "../forms/forms.module";
+import { ListConstatComponent } from './list-constat/list-constat.component';
+import { ListUserComponent } from './list-user/list-user.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   imports: [
     GestionnaireRoutingModule,
-    NbCardModule,
-    NbTreeGridModule,
-    NbIconModule,
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    NbAlertModule,
     NbInputModule,
-    ThemeModule,
+    NbButtonModule,
+    NbCardModule,
+    NbRadioModule,
     Ng2SmartTableModule,
+    NbCheckboxModule,
   ],
-  declarations: [...routedComponents],
+  declarations: [...routedComponents, ListConstatComponent, ListUserComponent, AddUserComponent],
 })
 export class GestionnaireModule {}

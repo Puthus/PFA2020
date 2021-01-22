@@ -19,6 +19,7 @@ export class ListUserComponent implements OnInit {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmEdit: true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -71,6 +72,13 @@ export class ListUserComponent implements OnInit {
 
   onDeleteConfirm(event): void {
     if (window.confirm("Are you sure you want to delete?")) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
+  onEditConfirm(event): void {
+    if (window.confirm("Are you sure you want to edit?")) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

@@ -6,8 +6,6 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ECommerceComponent } from "./e-commerce/e-commerce.component";
 import { NotFoundComponent } from "./miscellaneous/not-found/not-found.component";
 import { AuthGuardService } from "../auth-guard.service";
-import {ListRegComponent} from "./region/list-reg/list-reg.component";
-import {EditRegComponent} from "./region/edit-reg/edit-reg.component";
 
 const routes: Routes = [
   {
@@ -38,10 +36,6 @@ const routes: Routes = [
       {
         path: "dashboard",
         component: ECommerceComponent,
-      },
-      {
-        path: "regions",
-        component: EditRegComponent,
       },
       {
         path: "iot-dashboard",
