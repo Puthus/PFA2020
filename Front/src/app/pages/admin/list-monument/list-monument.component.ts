@@ -63,7 +63,7 @@ export class ListMonumentComponent implements OnInit {
   };
   source: Monument[];
   constructor(private service: MonumentService) {
-    this.service.getAll().subscribe((data) => (this.source = data));
+    this.service.getAll().subscribe((data) => (this.source = data["list"]));
   }
 
   ngOnInit(): void {}

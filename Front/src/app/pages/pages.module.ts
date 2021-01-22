@@ -7,9 +7,6 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { ECommerceModule } from "./e-commerce/e-commerce.module";
 import { PagesRoutingModule } from "./pages-routing.module";
 import { MiscellaneousModule } from "./miscellaneous/miscellaneous.module";
-import { GuestComponent } from "./guest/guest.component";
-import { GestionnaireComponent } from "./gestionnaire/gestionnaire.component";
-import { RecenseurComponent } from "./recenseur/recenseur.component";
 
 @NgModule({
   imports: [PagesRoutingModule, ThemeModule, NbMenuModule, DashboardModule, ECommerceModule, MiscellaneousModule],

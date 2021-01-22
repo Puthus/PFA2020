@@ -121,7 +121,7 @@ export const NB_CORE_PROVIDERS = [
             endpoint: "/api/auth/signin",
             method: "post",
             redirect: {
-              success: "pages/dashboard",
+              success: "pages/leaflet-map",
               failure: null, // stay on the same page
             },
           },
